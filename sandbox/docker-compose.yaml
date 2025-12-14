@@ -1,0 +1,16 @@
+import os
+import re
+import pandas as pd
+from sqlalchemy import create_engine
+
+
+
+DATABASE_URL = "postgresql://coffee:coffee@localhost:5432/coffee"
+engine = create_engine(DATABASE_URL)
+
+CSV_MAIN  = "coffe_ratings.csv"
+CSV_EXTRA = "coffee_extra.csv"
+
+dfs = pd.read_csv(CSV_MAIN)
+df_outer = dfs.merge(extra, on="country_of_origin", how="outer")
+df_outer.head()
